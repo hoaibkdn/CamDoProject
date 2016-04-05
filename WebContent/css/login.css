@@ -1,0 +1,22 @@
+body{
+    background: url(https://css-tricks.com/wp-content/themes/CSS-Tricks-14/images/login-bg.png) bottom center;
+    background-size: cover;
+}
+
+#login{
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.form-login{
+	overflow: hidden;
+    padding-bottom: 26px;
+    background-color: white;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.form-login>p{
+	color: black;
+	margin-top: 20px;
+}

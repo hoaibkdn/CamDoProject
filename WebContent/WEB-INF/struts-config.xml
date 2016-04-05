@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts 
+Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<!-- Nguoi dùng -->
+		<form-bean name="nguoiDungForm" type="form.NguoiDungForm" />
+		<form-bean name="baiDangForm" type="form.BaiDangBanForm" />		
+		<form-bean name="danhSachBaiDangBanForm" type="form.DanhSachBaiDangBanForm" />
+		<form-bean name="nd_LichSuDangBaiForm" type="form.Nd_LichSuDangBaiForm" />
+		<form-bean name="dangNhapForm" type="form.DangNhapForm" />
+		
+		<!-- Admin -->
+		<form-bean name="ad_BaiDangChuaDuyetForm" type="form.Ad_BaiDangChuaDuyetForm" />
+		<form-bean name="ad_LichSuNguoiDungDangBaiForm" type="form.Ad_LichSuNguoiDungDangBaiForm" />
+		<form-bean name="ad_DanhSachNguoiDungForm" type="form.Ad_DanhSachNguoiDungForm"/>
+	</form-beans>
+	
+	
+	<action-mappings>
+
+		<!-- USER -->
+		<!-- Hiển thị dang nhap -->
+		<action path="/dangNhap" type="action.DangNhapAction" name="dangNhapForm" 
+			scope="session" input="/DangNhap.jsp" validate="true">
+			<forward name="thanhCong" path="/danhSachBan.do" />
+			<forward name="adminPage" path="/Ad_TrangChu.jsp" />
+			<forward name="thatBai" path="/DangNhap.jsp" />
+		</action>
+		
+		<!-- Hiển thị dang xuat -->
+		<action path="/dangXuat" type="action.DangXuatAction" name="dangNhapForm" scope="session">
+			<forward name="dangXuatThanhCong" path="/danhSachBan.do" />
+		</action>
+		
+		<!-- Đăng ký tài khoản -->
+		<action path="/dangKy" type="action.DangKyAction" name="nguoiDungForm" 
+			scope="session" input="/DangKy.jsp" validate="true">
+			<forward name="thanhCong" path="/DangNhap.jsp" />
+			<forward name="dangKi" path="/DangKy.jsp" />
+		</action>
+		
+		<!-- Sửa thông tin cá nhân -->
+		<action path="/capNhatNguoiDung" type="action.User_SuaThongTinCaNhanAction" name="nguoiDungForm" 
+		scope="session" input="/Nd_SuaThongTinCaNhan.jsp" validate="true">
+			<forward name="capNhatThanhCong" path="/danhSachBan.do" />
+			<forward name="capNhatNguoiDung" path="/Nd_SuaThongTinCaNhan.jsp" />
+		</action>
+		
+		<!-- Hiển thị trang chu -->
+		<action path="/trangChu" name="dangNhapForm" scope="session" />
+		
+		<!-- Xem phản hồi -->
+		<action path="/xemPhanHoi" name="dangNhapForm" type="action.User_XemPhanHoiAction" scope="session">
+			<forward name="xemPhanHoi" path="/Nd_XemPhanHoi.jsp" />
+		</action>
+		
+		<!-- Hiển thị dang bai bán user-->
+		<action path="/dangBai" type="action.User_BaiDangBanAction" name="baiDangForm" scope="request">
+			<forward name="hienthiThanhCong" path="/Nd_DangBaiThanhCong.jsp" />
+			<forward name="themBaiDang" path="/Nd_DangBai.jsp" />
+			<forward name="nguoiDungDangNhap" path="/DangNhap.jsp"/>
+		</action>
+		
+		<!-- Hiển thị dang bài mua user-->
+		<action path="/dangBaiMua" type="action.User_DangMuaAction" name="baiDangForm" scope="request">
+			<forward name="hienthiThanhCong" path="/Nd_DangBaiThanhCong.jsp" />
+			<forward name="themBaiDangMua" path="/Nd_DangMua.jsp" />
+			<forward name="nguoiDungDangNhap" path="/DangNhap.jsp"/>
+		</action>
+		
+		<!-- Hiển thị danh sach bai dang BÁN-->
+		<action path="/danhSachBan" type="action.DanhSachBaiDangBanAction" name="danhSachBaiDangBanForm" scope="request">
+			<forward name="timKiemThanhCong" path="/HienThiDanhSachDangBan.jsp"/>
+			<forward name="danhSachDangBan" path="/HienThiDanhSachDangBan.jsp" />
+		</action>
+		
+		<!-- Xem them bài đăng bán-->
+		<action path="/xemNhieuBaiBan" type="action.User_XemThemAction" name="danhSachBaiDangBanForm" scope="request">
+			<forward name="timKiemThanhCong" path="/HienThiDanhSachDangBan.jsp"/>
+			<forward name="danhSachDangBan" path="/HienThiDanhSachDangBan.jsp" />
+		</action>
+		
+		<!-- Hiển thị danh sach bai dang MUA-->
+		<action path="/danhSachMua" type="action.DanhSachBaiDangMuaAction" name="danhSachBaiDangBanForm" scope="request">
+			<forward name="timKiemThanhCong" path="/HienThiDanhSachDangMua.jsp"/>
+			<forward name="danhSachDangBan" path="/HienThiDanhSachDangMua.jsp" />
+		</action>
+		
+		<!-- Xem them bài đăng mua-->
+		<action path="/xemNhieuBaiMua" type="action.User_XemThemMuaAction" name="danhSachBaiDangBanForm" scope="request">
+			<forward name="timKiemThanhCong" path="/HienThiDanhSachDangMua.jsp"/>
+			<forward name="danhSachDangBan" path="/HienThiDanhSachDangMua.jsp" />
+		</action>
+		
+		<!-- Hiển thị chi tiet bai dang-->
+		<action path="/xemChiTietUser" type="action.XemChiTietBaiDangBanAction" name="danhSachBaiDangBanForm" scope="request">
+			<forward name="xemChiTietDangBan" path="/XemChiTietBaiDangBan.jsp" />
+		</action>
+		
+		<!-- Hiển thị lịch sử bài đăng-->
+		<action path="/lichSuDang" type="action.User_LichSuDangBaiAction" name="nd_LichSuDangBaiForm" scope="request">
+			<forward name="lichSuBaiDang" path="/Nd_LichSuBaiDang.jsp" />
+			<forward name="nguoiDungDangNhap" path="/DangNhap.jsp"/>
+		</action>
+		
+		<!-- Sửa bài đã đăng-->
+		<action path="/suaBaiDangUser" type="action.User_SuaBaiDangAction" name="baiDangForm" scope="request">
+			<forward name="suaThanhCong" path="/lichSuDang.do" />
+			<forward name="suaBaiDang" path="/Nd_SuaBaiDang.jsp"/>
+		</action>
+		
+		<!-- Xoa bài đã đăng-->
+		<action path="/xoaBaiDangUser" type="action.User_XoaBaiDangAction" name="nd_LichSuDangBaiForm" scope="request">
+			<forward name="xoaThanhCong" path="/lichSuDang.do" />
+		</action>
+		
+		<!-- Quên mật khẩu-->
+		<action path="/quenMatKhau" type="action.User_QuenMatKhauAction" name="nguoiDungForm" scope="session">
+			<forward name="dienTenDangNhap" path="/Nd_XacNhanTenDangNhap.jsp" />
+			<forward name="dangNhap" path="/DangNhap.jsp"/>
+		</action>
+		
+		  <!-- ADMIN -->
+		<!-- Hiển thị danh sách bài đăng bán-->
+		<action path="/dsBanChuaDuyet" type="action.Ad_DanhSachDangBanChuaDuyetAction" name="ad_BaiDangChuaDuyetForm" scope="request">
+			<forward name="danhSachDangBanChuaDuyet" path="/Ad_DanhSachBanChuaDuyet.jsp" />
+		</action>
+		
+		<!-- Hiển thị danh sách bài đăng mua-->
+		<action path="/dsMuaChuaDuyet" type="action.Ad_DanhSachDangMuaChuaDuyetAction" name="ad_BaiDangChuaDuyetForm" scope="request">
+			<forward name="danhSachDangMuaChuaDuyet" path="/Ad_DanhSachMuaChuaDuyet.jsp" />
+		</action>
+		
+		<!-- Duyệt bài đăng - HIỂN THỊ LẠI DANH SÁCH CHƯA DUYỆT-->
+		<action path="/duyetBaiDang" type="action.Ad_DuyetBaiDangAction" name="ad_BaiDangChuaDuyetForm" scope="request">
+			<forward name="duyetDangBanThanhCong" path="/dsBanChuaDuyet.do" />
+			<forward name="duyetDangMuaThanhCong" path="/dsMuaChuaDuyet.do" />
+		</action>
+		
+		<!-- Hiển thị tất cả bài đăng -->
+		<!-- <action path="/dsDangBai" type="action.Ad_LichSuDangBaiNguoiDungAction" name="ad_LichSuNguoiDungDangBaiForm">
+			<forward name="tatCaBaiDang" path="/Ad_LichSuDangBaiNguoiDung.jsp" />
+		</action> -->
+		
+		<!-- Xóa bài đăng không hợp lệ -->
+		<action path="/xoaBaiDangAd" type="action.Ad_XoaBaiDangAction" name="ad_BaiDangChuaDuyetForm" scope="request">
+			<forward name="xoaDangBanThanhCong" path="/dsBanChuaDuyet.do" />
+			<forward name="xoaDangMuaThanhCong" path="/dsMuaChuaDuyet.do" />
+		</action>
+		
+		<!-- Xem chi tiet bai dang -->
+		<action path="/xemChiTiet" type="action.Ad_XemChiTietBaiDangChuaDuyetAction" name="ad_BaiDangChuaDuyetForm" scope="request">
+			<forward name="xemChiTiet" path="/Ad_XemChiTietBaiDang.jsp" />
+		</action>
+		
+		<!-- Danh sách người dùng -->
+		<action path="/danhSachNguoiDung" type="action.Ad_QuanLyNguoiDungAction" name="ad_DanhSachNguoiDungForm" scope="request">
+			<forward name="danhSachNguoiDung" path="/Ad_QuanLyNguoiDung.jsp" />
+			<forward name="nguoiDungTimKiem" path="/Ad_QuanLyNguoiDung.jsp" />
+		</action>
+		
+		<!-- Xóa người dùng -->
+		<action path="/xoaNguoiDung" type="action.Ad_XoaNguoiDungAction" name="ad_DanhSachNguoiDungForm" scope="request">
+			<forward name="danhSachNguoiDung" path="/danhSachNguoiDung.do" />
+		</action>
+		
+		<!-- Khóa người dùng -->
+		<action path="/khoaNguoiDung" type="action.Ad_KhoaNguoiDungAction" name="ad_DanhSachNguoiDungForm" scope="request">
+			<forward name="danhSachNguoiDung" path="/danhSachNguoiDung.do" />
+		</action>
+		
+		<!--Mở khóa người dùng -->
+		<action path="/moKhoaNguoiDung" type="action.Ad_MoKhoaNguoiDungAction" name="ad_DanhSachNguoiDungForm" scope="request">
+			<forward name="moKhoaThanhCong" path="/danhSachNguoiDung.do" />
+		</action>
+	</action-mappings>
+	<message-resources parameter="action.ApplicationResources" />
+
+</struts-config>
