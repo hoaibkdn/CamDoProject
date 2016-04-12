@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/ProductList.jsp=UTF-8
 encoding//src/common/CheckValidate.java=UTF-8
+encoding//src/controller/ClientHomePageController.java=UTF-8
+encoding//src/model/ProductModel.java=UTF-8

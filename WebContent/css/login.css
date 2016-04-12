@@ -1,4 +1,4 @@
-body{
+.body-login{
     background: url(https://css-tricks.com/wp-content/themes/CSS-Tricks-14/images/login-bg.png) bottom center;
     background-size: cover;
 }
@@ -19,4 +19,17 @@ body{
 .form-login>p{
 	color: black;
 	margin-top: 20px;
+}
+
+.btn-search .btn-login{
+	min-width: 60px;
+	background-color: #4d4e56;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.text-color{
+	color:black;
 }

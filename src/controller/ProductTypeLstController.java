@@ -1,26 +1,27 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import bean.UserBean;
+import bean.ProductBean;
+import model.ProductModel;
 
 /**
- * Servlet implementation class UserProductListController
+ * Servlet implementation class ProductTypeLstController
  */
-public class UserProductListController extends HttpServlet {
+public class ProductTypeLstController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserProductListController() {
+    public ProductTypeLstController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,14 +38,13 @@ public class UserProductListController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		UserBean SessionUser = (UserBean) session.getAttribute("SessionUser");
-		System.out.println("dang nhap thanh cong");
-		if(SessionUser!=null){
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("/ClientHomePage.jsp");
+		String idProductType = request.getParameter("idProductType");
+		ProductModel productModel = new ProductModel();
+		ArrayList<ProductBean> productTypeLst = new ArrayList<>();
+		productTypeLst = productModel.getProductFollowType(idProductType);
+		request.setAttribute("productTypeLst", productTypeLst);
+		RequestDispatcher rd = request.getRequestDispatcher("/ProductList.jsp");
 		rd.forward(request, response);
-		
 	}
 
 }

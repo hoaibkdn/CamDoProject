@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.NguoiDungBean;
-import model.NguoiDungModel;
+import bean.UserBean;
+import model.UserModel;
 
 public class LoginController extends HttpServlet {
 
@@ -28,32 +28,24 @@ public class LoginController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*
-		 * String nambtn = req.getParameter("dangNhapBtn");
-		 * System.out.println(nambtn); NguoiDungModel userModel = new
-		 * NguoiDungModel(); NguoiDungBean userBean = new NguoiDungBean();
-		 * if(req.getParameter("dangNhapBtn") != null){ String userId =
-		 * req.getParameter("cmndTxt"); String password =
-		 * req.getParameter("matKhauTxt"); userBean.setSoCMND(userId);
-		 * userBean.setMatkhau(password); System.out.println("Dang nhap 2");
-		 * 
-		 * }
-		 */
+		
 		if (req.getParameter("submit") != null) {
 			System.out.println("submit");
 			HttpSession session = req.getSession();
-			NguoiDungModel userModel = new NguoiDungModel();
-			String soCMND = req.getParameter("cmndTxt");
-			String matkhau = req.getParameter("matKhauTxt");
-			Timestamp date = new Timestamp(System.currentTimeMillis());
+			UserModel userModel = new UserModel();
+			String idCard = req.getParameter("idCardTxt");
+			String password = req.getParameter("passwordTxt");
+			Timestamp rencentLoginDate = new Timestamp(System.currentTimeMillis());
 			//NguoiDungBean userBean = new NguoiDungBean(soCMND, matkhau, "", "", "", "", "", "", "", -1, "", date, date);
-			NguoiDungBean userBean = new NguoiDungBean();
-			userBean.setSoCMND(soCMND);
-			userBean.setMatkhau(matkhau);
-			userBean.setThoiGianDangNhapGanNhat(date);
+			UserBean userBean = new UserBean();
+			userBean.setIdCard(idCard);
+			userBean.setPassword(password);
+			userBean.setRencentLoginDate(rencentLoginDate);
+			System.out.println(rencentLoginDate);
 			if(userModel.login(userBean) != null){
 				session.setAttribute("SessionUser", userBean);
-				System.out.println("phan quyen: "+userBean.getPhanQuyen());
+				System.out.println("phan quyen: "+userBean.getDecentralization());
+				System.out.println("name of user: "+userBean.getUsername());
 				resp.sendRedirect(req.getContextPath() + "/ClientHomePage");
 			}
 		} else {

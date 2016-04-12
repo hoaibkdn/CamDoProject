@@ -9,26 +9,37 @@
 <link type="text/css" href="css/header.css" rel="stylesheet"/>
 <link type="text/css" href="css/login.css" rel="stylesheet"/>
 <title>Dang nhap</title>
+<script type="text/javascript">
+	function login() {
+		idcardtext = document.Login.idCardTxt.value;
+		passtext = document.Login.passwordTxt.value;
+		if(idcardtext == "" || passtext == ""){
+			alert("số chứng minh nhân dân hoặc mật khẩu không được để trống");
+			return false;
+		}
+		else return true;
+	}
+</script>
 </head>
-<body>
-<form action="<%=request.getContextPath() %>/Login"  method ="post" name = "Login">
+<body class="body-login">
+<form action="<%=request.getContextPath() %>/Login"  method ="post" name = "Login" onsubmit="return login()">
 <div id="login" >
 	<div class="col-md-4 col-md-offset-4">
 		<div class="form-login" >
-			<div style="margin-left: 25px;margin-top: 60px;">
+			<div style="margin-left: 15px;margin-top: 60px;">
 				<p>
-					<label>Số CMND:
+					<label style="color: black;">Số CMND:
 						<br>
-						<input class="form-control" id="inputdefault" type="text" name = "cmndTxt">
+						<input class="form-control" type="text" name = "idCardTxt" >
 					</label>
 				</p>
 				<p>
-					<label>Mật khẩu:
+					<label style="color: black;">Mật khẩu:
 						<br>
-						<input class="form-control" id="inputdefault" type="text" name = "matKhauTxt">
+						<input class="form-control" type="text" name = "passwordTxt">
 					</label>
 				</p>
-				<p class="textCenter"><input class="btn btn-display" type="submit" value ="Dang nhap" name ="submit"> </p>
+				<p class="textCenter"><input class="btn-login" type="submit" value ="Dang nhap" name ="submit"> </p>
 			</div>
 		</div>
 	</div>

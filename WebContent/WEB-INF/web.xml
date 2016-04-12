@@ -62,8 +62,53 @@
 		<servlet-name>UserProductListController</servlet-name>
 		<servlet-class>controller.UserProductListController</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>SanPhamModel</display-name>
+		<servlet-name>SanPhamModel</servlet-name>
+		<servlet-class>model.SanPhamModel</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>LogoutController</display-name>
+		<servlet-name>LogoutController</servlet-name>
+		<servlet-class>controller.LogoutController</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>BookProductController</display-name>
+		<servlet-name>BookProductController</servlet-name>
+		<servlet-class>controller.BookProductController</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ProductTypeLstController</display-name>
+		<servlet-name>ProductTypeLstController</servlet-name>
+		<servlet-class>controller.ProductTypeLstController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserProductListController</servlet-name>
 		<url-pattern>/ProductList</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SanPhamModel</servlet-name>
+		<url-pattern>/SanPhamModel</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutController</servlet-name>
+		<url-pattern>/LogoutController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BookProductController</servlet-name>
+		<url-pattern>/BookProductController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProductTypeLstController</servlet-name>
+		<url-pattern>/ProductTypeLstController</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
